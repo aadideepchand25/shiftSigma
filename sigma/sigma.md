@@ -1,3 +1,21 @@
+## Strategies
+Keywords used to construct a `Strategy` which describes a process between a stream of `Info` and a stream of `Action`
+
+|Keyword|Explanation|Rule
+|---|---|---|
+|`->`|Function constructor
+|`::`|Has-type relation
+|`\|`|Case constructor
+|`\`|Lambda function
+|||
+|`data`|Introduce new data type
+|`where`|Introduce local function variable
+|`class`|Introduce new class
+|`instance`|Create member of class
+|||
+|`==`|Equality
+|`=`|Assignment
+
 ## Models
 Keywords used to construct a `Premise` which describes constraints of a market as well as a generative model.
 
@@ -6,10 +24,10 @@ Keywords used to construct a `Premise` which describes constraints of a market a
 |Keyword|Explanation|Rule
 |---|---|---|
 |`assume`|Make an assumption|
+|`random`|Introduce a random variable
+|||
 |`for _ in _`|For loop
 |`if _ then`|Conditional
-|||
-|`S`|Price at a certain time| `t : Num` / `S(t) : Num`
 |||
 |`=`|Fixed assignment
 |`~`|Distribution assignment
@@ -17,7 +35,7 @@ Keywords used to construct a `Premise` which describes constraints of a market a
 |||
 |`{ , }`|Distribution constructor
 
-## Proofs
+## Claims
 Keywords used to construct a `Claim` we can prove. A `Claim` will always be considered alongside a `Premise` which is a model of the market.
 |Keyword|Explanation|Rule
 |---|---|---|
@@ -40,3 +58,6 @@ Keywords used to construct a `Claim` we can prove. A `Claim` will always be cons
 |`F`| Property will be true in a future state | `p : Prop` / `F p : Prop`
 |`G`| Propety is true for all future states | `p : Prop` / `G p : Prop`
 |`U`| Property is true until another is true | `(p : Prop) ∧ (q: Prop)` / `p U q : Prop`
+
+## Proofs
+Keywords used to construct a proof under
