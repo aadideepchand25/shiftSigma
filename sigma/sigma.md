@@ -60,4 +60,22 @@ Keywords used to construct a `Claim` we can prove. A `Claim` will always be cons
 |`U`| Property is true until another is true | `(p : Prop) ∧ (q: Prop)` / `p U q : Prop`
 
 ## Proofs
-Keywords used to construct a proof under
+Keywords used to construct a proof of a `Claim` under a `Premise` regarding a `Strategy` 
+
+|Keyword|Explanation|Rule
+|---|---|---|
+| `assume`         | Introduce an assumption into the proof context                   | `Goal = A -> B` / `assume h : A` ⇒ `Γ, h : A ⊢ B`                              |
+| `apply`          | Apply a theorem, lemma, or rule to the current goal              | `Γ ⊢ B`, `Γ ⊢ A -> B` ⇒ new goal `Γ ⊢ A`                                       |
+| `have`           | Introduce an intermediate result                                 | `Γ ⊢ A`, `Γ, h : A ⊢ B` ⇒ `Γ ⊢ B`                                              |
+| `show`           | Explicitly state the current subgoal                             | `show A` ⇒ current goal becomes `A`                                            |
+| `split`          | Split a conjunction goal into separate goals                     | `Γ ⊢ A and B` ⇒ goals `Γ ⊢ A` and `Γ ⊢ B`                                      |
+| `cases`          | Perform case analysis on a disjunction, enum, or sum type        | `Γ, h : A or B ⊢ C` ⇒ goals `Γ, h₁ : A ⊢ C` and `Γ, h₂ : B ⊢ C`                |
+| `rewrite`        | Rewrite the goal using an equality                               | `Γ, h : a == b ⊢ P(a)` ⇒ `Γ ⊢ P(b)`                                            |
+| `unfold`         | Expand a definition                                              | `Γ ⊢ f(x)` ⇒ replace `f` with its definition                                   |
+| `simplify`       | Reduce expressions using built-in simplification rules           | `Γ ⊢ expr` ⇒ simplified form of `expr`                                         |
+| `exists`         | Provide a witness for an existential goal                        | `Γ ⊢ exists x : T, P(x)` ⇒ provide `w : T`, new goal `Γ ⊢ P(w)`                |
+| `induction`      | Perform induction over a recursive structure or time index       | `Γ ⊢ forall n, P(n)` ⇒ goals `Γ ⊢ P(0)` and `Γ, P(n) ⊢ P(n+1)`                 |
+| `invariant`      | Introduce or apply an invariant over all reachable states        | `Γ ⊢ A G P` ⇒ prove `P` initially and that transitions preserve `P`            |
+| `smt`            | Delegate the current arithmetic or logical goal to an SMT solver | `Γ ⊢ P` ⇒ succeeds if SMT proves `Γ ⇒ P`                                       |
+| `modelcheck`     | Delegate a temporal property to the model checker                | `Γ ⊢ φ` ⇒ succeeds if the market model satisfies `φ` under the current premise |
+| `counterexample` | Search for a path violating the current goal                     | `Γ ⊢ φ` ⇒ returns path `π` such that `π ⊭ φ`, or fails if none found           |
